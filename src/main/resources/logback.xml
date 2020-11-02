@@ -10,7 +10,14 @@
       <pattern>[%thread] %highlight(%-5level) %cyan(%logger{15}) - %msg %n</pattern>
     </encoder>
   </appender>
+  <appender name="BUGSNAG" class="com.bugsnag.BugsnagAppender">
+    <apiKey>${BUGSNAG_TOKEN}</apiKey>
+    <releaseStage>${ENV}</releaseStage>
+    <appVersion>${REVISION}</appVersion>
+    <projectPackage>io.github.samspills</projectPackage>
+  </appender>
   <root level="INFO">
     <appender-ref ref="STDOUT" />
+    <appender-ref ref="BUGSNAG" />
   </root>
 </configuration>
