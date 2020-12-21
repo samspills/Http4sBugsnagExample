@@ -18,7 +18,8 @@ lazy val root = (project in file("."))
       "org.specs2"      %% "specs2-core"         % Specs2Version % "test",
       "ch.qos.logback"  %  "logback-classic"     % LogbackVersion,
       "org.scalameta"   %% "svm-subs"            % "20.2.0",
-      "com.bugsnag"     % "bugsnag"              % "3.6.1"
+      "com.bugsnag"     % "bugsnag"              % "3.6.1",
+      "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2"
     ),
     addCompilerPlugin("org.typelevel" %% "kind-projector"     % "0.10.3"),
     addCompilerPlugin("com.olegpy"    %% "better-monadic-for" % "0.3.1")

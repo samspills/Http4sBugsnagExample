@@ -38,9 +38,9 @@ object Http4sbugsnagexampleRoutes {
       case GET -> Root / "exception" / IntVar(code) => 
         Ok(E.error(ExampleExceptions.Code(code))).handleErrorWith {
           case ForbiddenExample(m) => Forbidden(m)
-          case NotFoundExample(m) => NotFound(m)
-          case NotImplementedExample(m) => NotImplemented(m)
-          case UnavailableExample(m) => ServiceUnavailable(m)
+        //   case NotFoundExample(m) => NotFound(m)
+        //   case NotImplementedExample(m) => NotImplemented(m)
+        //   case UnavailableExample(m) => ServiceUnavailable(m)
         }
     }
   }
