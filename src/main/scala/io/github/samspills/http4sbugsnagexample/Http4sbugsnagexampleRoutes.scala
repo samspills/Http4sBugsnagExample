@@ -30,4 +30,18 @@ object Http4sbugsnagexampleRoutes {
         } yield resp
     }
   }
+
+  def exceptionRoutes[F[_]: Sync](E: ExampleExceptions[F]): HttpRoutes[F] = {
+    val dsl = new Http4sDsl[F]{}
+    import dsl._
+    HttpRoutes.of[F] {
+      case GET -> Root / "exception" / IntVar(code) => 
+        Ok(E.error(ExampleExceptions.Code(code))).handleErrorWith {
+          case ForbiddenExample(m) => Forbidden(m)
+          case NotFoundExample(m) => NotFound(m)
+          case NotImplementedExample(m) => NotImplemented(m)
+          case UnavailableExample(m) => ServiceUnavailable(m)
+        }
+    }
+  }
 }

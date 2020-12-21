@@ -16,6 +16,7 @@ object Http4sbugsnagexampleServer {
       client <- BlazeClientBuilder[F](global).stream
       helloWorldAlg = HelloWorld.impl[F]
       jokeAlg = Jokes.impl[F](client)
+      exampleExceptionsAlg = ExampleExceptions.impl[F]
 
       // Combine Service Routes into an HttpApp.
       // Can also be done via a Router if you
@@ -23,7 +24,8 @@ object Http4sbugsnagexampleServer {
       // in the underlying routes.
       httpApp = (
         Http4sbugsnagexampleRoutes.helloWorldRoutes[F](helloWorldAlg) <+>
-        Http4sbugsnagexampleRoutes.jokeRoutes[F](jokeAlg)
+          Http4sbugsnagexampleRoutes.jokeRoutes[F](jokeAlg) <+>
+          Http4sbugsnagexampleRoutes.exceptionRoutes[F](exampleExceptionsAlg)
       ).orNotFound
 
       // With Middlewares in place
